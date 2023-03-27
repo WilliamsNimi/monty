@@ -1,0 +1,31 @@
+#include "monty.h"
+#include <stdlib.h>
+#include <stdio.h>
+/**
+ * add- This is the add function
+ * Description: This function prints all the element of a stack
+ * @stack: The stack whose elements are to be printed
+ * Return: Returns nothing
+ */
+void add(stack_t **stack)
+{
+	int first, second, sum;
+	stack_t *new_stack;
+
+	new_stack = *stack;
+	if (new_stack == NULL || new_stack->next->next == NULL)
+	{
+		printf("L<line_number>: can't add, stack too short\n");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		first = new_stack->n;
+		second = new_stack->next->n;
+		sum = first + second;
+		(*stack)->next->n = sum;
+		new_stack = (*stack);
+		*stack = (*stack)->next;
+		free(new_stack);
+	}
+}
